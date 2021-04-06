@@ -22,6 +22,7 @@ over a vehicle from the current side. See examples 2 and 3 for clarification.
 Loading and unloading takes 0 time. The ferry takes 100 units of time to cross the river.
 Again, recall the ferry starts on the West bank. What time is the last vehicle dropped off?
 
+
 Sample Input:
 
 	5 1
