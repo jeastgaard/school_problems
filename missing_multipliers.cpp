@@ -2,7 +2,32 @@
 Name: Joshua Eastgaard
 Problem: Missing Multipliers
 Date: March 16th, 2021
------------------------------------*/
+-------------------------------------
+
+Input:
+
+On the first line of input you will be given two space separated integers n, (1 ≤ n ≤ 100, 000),
+the amount of numbers in the array, and m, (0 ≤ m ≤ n − 1), the amount of multipliers to
+be excluded from the product on either side of each ai.
+
+On the second line you will be given n space separated integers, such that for each ai,
+(−10 ≤ ai ≤ 10) and Product for [i=0, to i = n-1] | ai <= 2^63 - 1
+
+Output:
+
+You are to output one line containing n space separated integers, each ai should be the
+product of the array excluding itself and it’s m neighbours to the left and right (if such
+neighbours exist), if all digits are excluded you are to put an answer of 0.
+
+Example:
+
+Input:
+	5 2
+	3 -2 7 0 4
+Output:
+	0 4 0 3 -6
+
+*/
 
 #include <iostream>
 #include <unordered_map>
