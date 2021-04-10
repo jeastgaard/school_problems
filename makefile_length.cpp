@@ -1,6 +1,5 @@
 /*----------------------------------
 Name: Joshua Eastgaard
-ID: 1646032
 Assignment: WE #7, Interview Question, Makefile_length
 Class: CMPUT 275, Wintedr 2021
 Date: April 8th, 2021
