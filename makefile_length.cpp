@@ -18,7 +18,7 @@ int gotoTar(string target, unordered_map<string, int> & reached, unordered_map<s
 int gotoDeps(string target, unordered_map<string, int> & reached, unordered_map<string, vector<string>> * tar_map);
 
 
-int main(){
+int main() {
 	// Map for storing dependencies
 	unordered_map<string, vector<string>> tar_map;
 	// Map for reached dependenceis
@@ -39,7 +39,7 @@ int main(){
 		// Get every dependecy for the target
 		// and add it to the vector
 		string temp;
-		for(int x = 0; x < n_dep; x++){
+		for (int x = 0; x < n_dep; x++) {
 			cin >> temp;
 			tar_deps.push_back(temp);
 		}
@@ -49,26 +49,26 @@ int main(){
 	}
 	// Now we have all our targets and dependencies
 	// We must loop through all targets and find longest chain
-	//auto it = tar_map.begin();
+	// auto it = tar_map.begin();
 	int cur_len = 0, temp = 0;
 
-	for(auto it : tar_map){
+	for (auto it : tar_map) {
 		// If we have already explored this target, then it can no longer have
 		// the longest path.
-		if(!reached[it.first]){
+		if (!reached[it.first]) {
 			// Explore the target. This will return the LONGEST trail of dependencies.
 			reached[it.first] = gotoTar(it.first, reached, &tar_map);
 			temp = reached[it.first];
 		}
 		// Have we found a new longest trail?
-		if(temp > cur_len) cur_len = temp;
+		if (temp > cur_len) cur_len = temp;
 	}
 	// Print out the longest trail found.
 	cout << cur_len << endl;
 	return 0;
 }
 
-/*Description: This function explores a given dependency and returns the 'depth'.
+/* Description: This function explores a given dependency and returns the 'depth'.
 Depth is defined by how many dependencies that the current dependency needs.
 Arguments: 
 	-dep (string) -> Dependency that will be explored.
@@ -79,26 +79,26 @@ Arguments:
 	than passing the whole map through to the function.
 Returns: 'Depth' of the dependency (int)
 */
-int gotoDeps(string dep, unordered_map<string, int> & reached, unordered_map<string, vector<string>> * tar_map){
-	/*There are three posiblities:
+int gotoDeps(string dep, unordered_map<string, int> & reached, unordered_map<string, vector<string>> * tar_map) {
+	/* There are three posiblities:
 	1: We have already reached the desired dependency, in that case
 	we can return that dependency length + 1
 	2: We have never reached the dependency AND it IS a target. In
 	that case we need to explore the target.
 	3: We have never reached the dependency AND it is NOT a target,
 	then we need to return 1 as it cannot go any 'deeper'.*/
-	if(reached.count(dep)){
+	if (reached.count(dep)) {
 		return reached[dep] + 1;
-	}else{
-		if(tar_map->count(dep)){
+	} else {
+		if (tar_map->count(dep)) {
 			return gotoTar(dep, reached, tar_map) + 1;
-		}else{
+		} else {
 			return 1;
 		}
 	}
 }
 
-/*Description: This function explores a target, which in turn explores every dependency by calling the gotoDeps function.
+/* Description: This function explores a target, which in turn explores every dependency by calling the gotoDeps function.
 It will search through the target and find the depency with the longest depth.
 Arguments:
 	-target (string) -> Target that the function explores
@@ -110,14 +110,14 @@ Arguments:
 Returns:
 	-length (int) -> 'Depth' of the target.
 */
-int gotoTar(string target, unordered_map<string, int> & reached, unordered_map<string, vector<string>> * tar_map){
+int gotoTar(string target, unordered_map<string, int> & reached, unordered_map<string, vector<string>> * tar_map) {
 	int length = 0, temp = 0;
 	// Loop through every depency in target.
-	for(auto dep : (*tar_map)[target]){
+	for (auto dep : (*tar_map)[target]) {
 		// Get depth of dependency.
 		temp = gotoDeps(dep, reached, tar_map);
 		// If a new longest path is found, set new length.
-		if(temp > length){
+		if (temp > length) {
 			length = temp;
 			reached[target] = length;
 		}
